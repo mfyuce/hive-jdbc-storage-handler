@@ -67,7 +67,7 @@ public class JdbcInputFormat extends HiveInputFormat<LongWritable, MapWritable> 
 
             int numRecords = dbAccessor.getTotalNumberOfRecords(job);
             int numRecordsPerSplit =numSplits==0 ? 0 : (numRecords / numSplits);
-            int numSplitsWithExtraRecords = numRecords % numSplits;
+            int numSplitsWithExtraRecords = numSplits==0 ? 0 : numRecords % numSplits;
 
             LOGGER.debug("Num records = {}", numRecords);
             InputSplit[] splits = new InputSplit[numSplits];
