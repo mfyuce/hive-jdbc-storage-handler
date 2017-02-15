@@ -20,7 +20,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hive.ql.io.HiveInputFormat;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.mapred.FileInputFormat;
+import org.apache.hadoop.mapred .FileInputFormat;
 import org.apache.hadoop.mapred.InputSplit;
 import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapred.RecordReader;
@@ -66,7 +66,7 @@ public class JdbcInputFormat extends HiveInputFormat<LongWritable, MapWritable> 
             }
 
             int numRecords = dbAccessor.getTotalNumberOfRecords(job);
-            int numRecordsPerSplit = numRecords / numSplits;
+            int numRecordsPerSplit =numSplits==0 ? 0 : (numRecords / numSplits);
             int numSplitsWithExtraRecords = numRecords % numSplits;
 
             LOGGER.debug("Num records = {}", numRecords);
